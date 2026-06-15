@@ -1,0 +1,6 @@
+{
+  "name": "Aurora Bistro Menu",
+  "description": "Mobile-first digital menu and ordering system for Aurora Bistro.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
