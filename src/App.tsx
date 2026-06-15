@@ -104,6 +104,21 @@ export default function App() {
   const vegItems = useMemo(() => filteredMenuItems.filter(item => item.isVeg), [filteredMenuItems]);
   const nonVegItems = useMemo(() => filteredMenuItems.filter(item => !item.isVeg), [filteredMenuItems]);
 
+  const allCategories = useMemo(() => [
+    { name: "All", filterKey: "all", icon: "🍽️" },
+    ...CATEGORIES.map(cat => ({
+      name: cat.name.replace('Gourmet ', '').replace('Soft ', '').replace(' Menu', ''),
+      filterKey: cat.filterKey,
+      icon: cat.icon === 'Sparkles' ? '✨' :
+            cat.icon === 'Cookie' ? '🍪' :
+            cat.icon === 'Flame' ? '🔥' :
+            cat.icon === 'GlassWater' ? '🥤' :
+            cat.icon === 'CupSoda' ? '🥤' :
+            cat.icon === 'Dessert' ? '🍰' :
+            cat.icon === 'IceCream' ? '🍦' : '🍽️'
+    }))
+  ], []);
+
   return (
     <div className="min-h-screen bg-slate-50 flex justify-center py-0 sm:py-8 font-sans antialiased text-slate-800">
       {/* 
@@ -145,9 +160,9 @@ export default function App() {
 
           {/* Quick interactive utility if we are inside the Menu screen */}
           {activeTab === 'menu' && (
-            <div className="flex items-center gap-2 mt-1">
+            <div className="flex flex-col gap-2.5 mt-1">
               {/* Keywords Search input */}
-              <div className="relative flex-1">
+              <div className="relative w-full">
                 <Search className="absolute left-3 top-2.5 w-4 h-4 text-slate-400" />
                 <input
                   type="text"
@@ -166,17 +181,28 @@ export default function App() {
                 )}
               </div>
 
-              {/* Dynamic pure veg toggle switch */}
-              <button
-                onClick={() => setDietarySelection(prev => prev === 'veg' ? 'all' : 'veg')}
-                className={`p-1.5 px-2.5 rounded-xl border text-xs font-bold flex items-center gap-1 transition-all ${
-                  dietarySelection === 'veg' 
-                    ? 'bg-veg-green/10 text-veg-green border-veg-green/30' 
-                    : 'bg-slate-50 text-slate-500 border-slate-150'
-                }`}
-              >
-                <Leaf className="w-3.5 h-3.5" /> <span className="inline">Veg</span>
-              </button>
+              {/* Redesigned 2-3 Row Category Grid (Without Scrolling) */}
+              <div className="grid grid-cols-3 gap-1.5 bg-slate-50 p-1.5 rounded-2xl border border-slate-100/80">
+                {allCategories.map((cat) => {
+                  const isSelected = selectedCategory === cat.filterKey;
+                  return (
+                    <button
+                      key={cat.filterKey}
+                      onClick={() => setSelectedCategory(cat.filterKey)}
+                      className={`py-1.5 px-1 rounded-xl flex flex-col items-center justify-center gap-1 transition-all text-center border ${
+                        isSelected
+                          ? 'bg-accent-500 text-white border-accent-500 shadow-md shadow-orange-100/40 font-extrabold scale-[1.02]'
+                          : 'bg-white text-slate-600 border-slate-100 hover:bg-slate-100/55 font-semibold'
+                      }`}
+                    >
+                      <span className="text-sm leading-none">{cat.icon}</span>
+                      <span className="text-[9px] font-sans tracking-tight leading-none uppercase">
+                        {cat.name}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           )}
         </header>
@@ -193,66 +219,20 @@ export default function App() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.15 }}
-                className="flex-1 flex overflow-hidden min-h-0"
+                className="flex-1 bg-white overflow-y-auto px-4 py-3.5 no-scrollbar pb-28 flex flex-col"
               >
-                {/* LEFT SIDEBAR: CATEGORIES (TOP TO DOWN) */}
-                <div className="w-[82px] bg-slate-50 border-r border-slate-100 flex flex-col gap-2 py-3 overflow-y-auto no-scrollbar shrink-0">
-                  {/* "All" Category Pill */}
-                  <button
-                    onClick={() => { setSelectedCategory('all'); }}
-                    className={`mx-2 py-3 px-1 rounded-2xl flex flex-col items-center gap-1.5 transition-all text-center leading-none ${
-                      selectedCategory === 'all'
-                        ? 'bg-accent-500 text-white shadow-md shadow-orange-100 font-black'
-                        : 'text-slate-600 hover:bg-slate-100 font-bold'
-                    }`}
-                  >
-                    <span className="text-base">🍽️</span>
-                    <span className="text-[9px] font-sans tracking-tight uppercase">All</span>
-                  </button>
-
-                  {CATEGORIES.map((cat) => {
-                    const isSelected = selectedCategory === cat.filterKey;
-                    return (
-                      <button
-                        key={cat.filterKey}
-                        onClick={() => { setSelectedCategory(cat.filterKey); }}
-                        className={`mx-2 py-3 px-1 rounded-2xl flex flex-col items-center gap-1.5 transition-all text-center leading-none ${
-                          isSelected
-                            ? 'bg-accent-500 text-white shadow-md shadow-orange-100 font-black'
-                            : 'text-slate-500 hover:bg-slate-100 font-bold'
-                        }`}
-                      >
-                        <span className="text-base">
-                          {cat.icon === 'Sparkles' && '✨'}
-                          {cat.icon === 'Cookie' && '🍪'}
-                          {cat.icon === 'Flame' && '🔥'}
-                          {cat.icon === 'GlassWater' && '🥤'}
-                          {cat.icon === 'CupSoda' && '🥤'}
-                          {cat.icon === 'Dessert' && '🍰'}
-                          {cat.icon === 'IceCream' && '🍦'}
-                        </span>
-                        <span className="text-[9px] font-sans tracking-tight uppercase break-words px-0.5">
-                          {cat.name.replace('Gourmet ', '').replace('Soft ', '').replace(' Menu', '')}
-                        </span>
-                      </button>
-                    );
-                  })}
+                {/* Category Title & Summary */}
+                <div className="mb-2">
+                  <h2 className="text-sm font-sans font-black text-slate-850 tracking-tight uppercase">
+                    {selectedCategory === 'all' ? 'All Masterpieces' : CATEGORIES.find(c => c.filterKey === selectedCategory)?.name}
+                  </h2>
+                  <p className="text-[9px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">
+                    {filteredMenuItems.length} recipes found
+                  </p>
                 </div>
 
-                {/* RIGHT PANE: LIST OF ITEMS WITH THE DIETARY SPECIFICATION */}
-                <div className="flex-1 bg-white overflow-y-auto px-4 py-3 no-scrollbar pb-24">
-                  {/* Category Title & Summary */}
-                  <div className="mb-2">
-                    <h2 className="text-sm font-sans font-black text-slate-850 tracking-tight uppercase">
-                      {selectedCategory === 'all' ? 'All Masterpieces' : CATEGORIES.find(c => c.filterKey === selectedCategory)?.name}
-                    </h2>
-                    <p className="text-[9px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">
-                      {filteredMenuItems.length} recipes found
-                    </p>
-                  </div>
-
-                  {/* SUB-FILTER ICONS DOWN OF IT - VEG AND NON-VEG TOGGLES */}
-                  <div className="grid grid-cols-3 gap-1 bg-slate-50 p-1 rounded-xl border border-slate-100 mb-4 sticky top-0 z-10 shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
+                {/* SUB-FILTER ICONS DOWN OF IT - VEG AND NON-VEG TOGGLES */}
+                <div className="grid grid-cols-3 gap-1 bg-slate-100/60 p-1 rounded-xl border border-slate-200/40 mb-4 sticky top-0 z-10 shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
                     <button
                       onClick={() => setDietarySelection('all')}
                       className={`py-1.5 rounded-lg text-[9px] font-sans font-black uppercase tracking-wider flex items-center justify-center gap-1 transition-all ${
@@ -364,7 +344,6 @@ export default function App() {
                       </button>
                     </div>
                   )}
-                </div>
               </motion.div>
             )}
 
