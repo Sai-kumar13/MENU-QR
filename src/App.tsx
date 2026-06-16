@@ -219,7 +219,7 @@ export default function App() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.15 }}
-                className="flex-1 bg-white overflow-y-auto px-4 py-3.5 no-scrollbar pb-28 flex flex-col"
+                className="flex-1 bg-white overflow-y-auto px-4 py-3.5 elegant-scrollbar pb-28 flex flex-col"
               >
                 {/* Category Title & Summary */}
                 <div className="mb-2">
@@ -355,7 +355,7 @@ export default function App() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.15 }}
-                className="flex-1 overflow-y-auto no-scrollbar p-5 pb-28"
+                className="flex-1 overflow-y-auto elegant-scrollbar p-5 pb-28"
               >
                 <InfoPanel />
               </motion.div>
@@ -369,7 +369,7 @@ export default function App() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.15 }}
-                className="flex-1 overflow-y-auto no-scrollbar p-5 pb-28"
+                className="flex-1 overflow-y-auto elegant-scrollbar p-5 pb-28"
               >
                 <ContactForm />
               </motion.div>

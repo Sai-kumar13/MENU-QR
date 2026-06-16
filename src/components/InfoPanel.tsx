@@ -65,26 +65,26 @@ export default function InfoPanel() {
         <div className="relative w-full h-48 bg-slate-50 rounded-2xl overflow-hidden mb-4 border border-slate-100 group">
           {/* Mock Map graphics with CSS grids to look highly stylized and artistic */}
           <div className="absolute inset-0 opacity-80 grid grid-cols-6 grid-rows-4 pointer-events-none p-1">
-            <div className="border-r border-b border-slate-205 bg-slate-50" />
-            <div className="border-r border-b border-slate-205 bg-slate-50" />
-            <div className="border-r border-b border-slate-350 bg-orange-105" />
-            <div className="border-r border-b border-slate-205 bg-slate-50" />
-            <div className="border-r border-b border-slate-205 bg-slate-50" />
-            <div className="border-b border-slate-205 bg-slate-50" />
+            <div className="border-r border-b border-slate-200 bg-slate-50" />
+            <div className="border-r border-b border-slate-200 bg-slate-50" />
+            <div className="border-r border-b border-slate-300 bg-orange-100/40" />
+            <div className="border-r border-b border-slate-200 bg-slate-50" />
+            <div className="border-r border-b border-slate-200 bg-slate-50" />
+            <div className="border-b border-slate-200 bg-slate-50" />
 
-            <div className="border-r border-b border-slate-205 bg-slate-50" />
+            <div className="border-r border-b border-slate-200 bg-slate-50" />
             {/* Mock central green park */}
             <div className="col-span-2 row-span-2 border border-emerald-100/40 bg-emerald-100/10 rounded-lg m-2 relative">
               <span className="absolute inset-x-0 bottom-1 text-[8px] text-center text-emerald-700/60 font-medium">Anderson Park</span>
             </div>
-            <div className="border-r border-b border-slate-350 bg-slate-100" />
-            <div className="border-r border-b border-slate-205 bg-slate-100/30" />
-            <div className="border-b border-slate-205 bg-slate-50" />
+            <div className="border-r border-b border-slate-300 bg-slate-100" />
+            <div className="border-r border-b border-slate-200 bg-slate-100/30" />
+            <div className="border-b border-slate-200 bg-slate-50" />
 
-            <div className="border-r border-b border-slate-205 bg-slate-100" />
-            <div className="border-r border-b border-slate-350 bg-slate-50" />
-            <div className="border-r border-b border-slate-205 bg-slate-50" />
-            <div className="border-b border-slate-205 bg-slate-50" />
+            <div className="border-r border-b border-slate-200 bg-slate-100" />
+            <div className="border-r border-b border-slate-300 bg-slate-50" />
+            <div className="border-r border-b border-slate-200 bg-slate-50" />
+            <div className="border-b border-slate-200 bg-slate-50" />
 
             <div className="col-span-6 bg-slate-200/20 border-t-2 border-dashed border-slate-300/40 relative h-full flex items-center pl-8">
               <span className="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Khader Nawaz Khan Rd</span>
@@ -113,19 +113,19 @@ export default function InfoPanel() {
         <div className="space-y-3.5 mb-6">
           <div className="flex items-start gap-3">
             <MapPin className="w-[18px] h-[18px] text-slate-400 mt-0.5 shrink-0" />
-            <p className="text-slate-650 text-xs leading-relaxed">
+            <p className="text-slate-600 text-xs leading-relaxed">
               {RESTAURANT_INFO.address}
             </p>
           </div>
 
           <div className="flex items-center gap-3">
             <Phone className="w-[18px] h-[18px] text-slate-400 shrink-0" />
-            <p className="text-slate-650 text-xs font-bold">{RESTAURANT_INFO.phone}</p>
+            <p className="text-slate-600 text-xs font-bold">{RESTAURANT_INFO.phone}</p>
           </div>
 
           <div className="flex items-center gap-3">
             <Mail className="w-[18px] h-[18px] text-slate-400 shrink-0" />
-            <p className="text-slate-650 text-xs">{RESTAURANT_INFO.email}</p>
+            <p className="text-slate-600 text-xs">{RESTAURANT_INFO.email}</p>
           </div>
         </div>
 

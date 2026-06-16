@@ -143,7 +143,7 @@ export default function FloatingCart({
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-1.5 mb-0.5">
                         <span className={`w-2 h-2 rounded-full inline-block flex-shrink-0 ${cartItem.item.isVeg ? 'bg-veg-green' : 'bg-nonveg-red'}`} />
-                        <h4 className="font-sans font-semibold text-slate-800 text-xs truncate">
+                        <h4 className="font-sans font-semibold text-slate-800 text-xs break-words">
                           {cartItem.item.name}
                         </h4>
                       </div>
