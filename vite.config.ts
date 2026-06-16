@@ -5,7 +5,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(({ command }) => {
   return {
-    base: command === 'serve' ? '/' : '/MENU-QR/',
+    base: './',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
