@@ -389,7 +389,7 @@ export default function App() {
         )}
 
         {/* APP BOTTOM NAVIGATION BAR MOCK */}
-        <nav className="absolute bottom-0 left-0 right-0 bg-white/80 backdrop-blur-md border-t border-slate-100 px-4 py-4 flex items-center justify-between z-40 shadow-[0_-4px_16px_rgba(0,0,0,0.01)] col-span-4">
+        <nav className="absolute bottom-0 left-0 right-0 bg-white/80 backdrop-blur-md border-t border-slate-100 px-6 py-4 flex items-center justify-between z-40 shadow-[0_-4px_16px_rgba(0,0,0,0.01)]">
           {/* Menu Button */}
           <button
             onClick={() => setActiveTab('menu')}
