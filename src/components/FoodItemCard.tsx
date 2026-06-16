@@ -74,7 +74,7 @@ export default function FoodItemCard({
         <div className="flex-1 flex flex-col justify-between min-w-0">
           <div onClick={() => setIsDetailOpen(true)} className="cursor-pointer group">
             <div className="flex justify-between items-start gap-1">
-              <h3 className="text-sm font-bold text-slate-800 line-clamp-1 group-hover:text-accent-500 transition-colors">
+              <h3 className="text-sm font-bold text-slate-800 group-hover:text-accent-500 transition-colors">
                 {name}
               </h3>
               <span className="text-sm font-extrabold text-slate-900 whitespace-nowrap">

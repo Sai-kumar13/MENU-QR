@@ -120,77 +120,22 @@ export default function App() {
   ], []);
 
   return (
-    <div className="min-h-screen bg-slate-100 flex items-center justify-center p-0 md:p-6 font-sans antialiased text-slate-800">
+    <div className="min-h-screen bg-slate-50 flex justify-center py-0 sm:py-8 font-sans antialiased text-slate-800">
       {/* 
-        PREMIUM RESPONSIVE WRAPPER (Split layout on desktop, fluid on mobile)
+        CENTRAL COMPACT MOBILE FRAMEWORK CONTAINER
+        Acts like a real iOS/Android mock device screen centered on desktop,
+        whilst running fully fluid and full-bleed on physical smartphone screens.
       */}
-      <div className="w-full max-w-5xl md:grid md:grid-cols-12 md:gap-8 items-stretch justify-center min-h-screen md:min-h-[760px] md:max-h-[88vh]">
+      <div className="w-full max-w-sm bg-white min-h-screen sm:min-h-[720px] sm:max-h-[92vh] sm:rounded-[40px] sm:shadow-2xl flex flex-col relative overflow-hidden border-0 sm:border-8 border-slate-900">
         
-        {/* LEFT COLUMN: EDITORIAL HERO PANEL (Visible on md and above) */}
-        <div className="hidden md:flex md:col-span-5 bg-slate-900 text-white rounded-[32px] p-8 flex-col justify-between relative overflow-hidden shadow-xl border border-slate-800/80">
-          {/* Decorative Background Artwork Overlay */}
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=1200')] bg-cover bg-center mix-blend-overlay opacity-25" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-transparent z-1" />
-
-          {/* Top Metadata */}
-          <div className="relative z-10 flex flex-col gap-1.5">
-            <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-              <span className="text-[10px] tracking-widest font-black uppercase text-emerald-400">Open & serving live</span>
-            </div>
-          </div>
-
-          {/* Central Editorial Header */}
-          <div className="relative z-10 my-auto py-12 flex flex-col gap-4">
-            <span className="text-accent-500 font-serif italic text-lg leading-none">Welcome to</span>
-            <h2 className="text-4xl font-serif font-bold tracking-tight text-white leading-none">
-              {RESTAURANT_INFO.name}
-            </h2>
-            <div className="w-12 h-[3px] bg-accent-500 rounded-full" />
-            <p className="text-xs text-slate-300 leading-relaxed font-sans max-w-xs font-medium">
-              {RESTAURANT_INFO.description}
-            </p>
-          </div>
-
-          {/* Bottom Luxury Card Info */}
-          <div className="relative z-10 border-t border-slate-850 pt-6 flex flex-col gap-4">
-            <div className="flex items-start gap-3">
-              <span className="text-base text-accent-500">📍</span>
-              <div className="flex flex-col gap-0.5">
-                <span className="text-[9px] font-black uppercase text-slate-400 tracking-wider">Address</span>
-                <span className="text-[11px] text-slate-200 leading-snug font-medium">
-                  {RESTAURANT_INFO.address.replace(', Chennai, Tamil Nadu 600006', '')}
-                </span>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <span className="text-base text-accent-500">📞</span>
-              <div className="flex flex-col gap-0.5">
-                <span className="text-[9px] font-black uppercase text-slate-400 tracking-wider">Contact & Inquiries</span>
-                <span className="text-[11px] text-slate-200 font-medium font-sans">
-                  {RESTAURANT_INFO.phone}
-                </span>
-              </div>
-            </div>
-            
-            <div className="flex items-center justify-between text-[10px] font-bold text-slate-400 bg-slate-950/60 backdrop-blur-xs p-3 rounded-2xl border border-slate-800/50">
-              <span>⏰ Weekdays: 11:30 AM — 11:00 PM</span>
-            </div>
+        {/* TOP STATUS BAR MOCK FOR EXTRA POLISH */}
+        <div className="hidden sm:flex bg-white text-slate-400 min-h-[36px] px-8 items-center justify-between text-[11px] font-sans font-bold tracking-tight shrink-0">
+          <span>9:41</span>
+          <div className="flex gap-1.5">
+            <div className="w-3.5 h-3.5 rounded-full bg-slate-150" />
+            <div className="w-3.5 h-3.5 rounded-full bg-slate-150" />
           </div>
         </div>
-
-        {/* RIGHT COLUMN: CORE MOBILE-FIRST BISTRO APP CONTAINER */}
-        <div className="col-span-12 md:col-span-7 bg-white min-h-screen md:min-h-0 md:max-h-[88vh] md:rounded-[32px] md:shadow-2xl flex flex-col relative overflow-hidden border-0 md:border md:border-slate-100">
-          
-          {/* MOCK STATUS BAR (Only on non-desktop view wrappers, hidden when fully responsive) */}
-          <div className="hidden sm:flex md:hidden bg-white text-slate-400 min-h-[36px] px-8 items-center justify-between text-[11px] font-sans font-bold tracking-tight shrink-0">
-            <span>9:41</span>
-            <div className="flex gap-1.5">
-              <div className="w-3.5 h-3.5 rounded-full bg-slate-150" />
-              <div className="w-3.5 h-3.5 rounded-full bg-slate-150" />
-            </div>
-          </div>
 
         {/* APP HEADER */}
         <header className="bg-white px-5 pt-2 pb-4 border-b border-slate-50 flex flex-col gap-3 sticky top-0 z-30 shadow-[0_1px_10px_rgba(0,0,0,0.01)]">
@@ -410,7 +355,7 @@ export default function App() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.15 }}
-                className="p-5"
+                className="flex-1 overflow-y-auto no-scrollbar p-5 pb-28"
               >
                 <InfoPanel />
               </motion.div>
@@ -424,7 +369,7 @@ export default function App() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.15 }}
-                className="p-5"
+                className="flex-1 overflow-y-auto no-scrollbar p-5 pb-28"
               >
                 <ContactForm />
               </motion.div>
@@ -482,8 +427,6 @@ export default function App() {
         {/* Home Indicator bar */}
         <div className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-32 h-1 bg-slate-100 rounded-full" />
       </div>
-
     </div>
-  </div>
   );
 }
