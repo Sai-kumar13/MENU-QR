@@ -5,7 +5,8 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(({ command }) => {
   return {
-    base: './',
+    // Sets base to '/MENU-QR/' explicitly for GitHub Pages builds, fallback to './' for local/preview
+    base: process.env.GITHUB_ACTIONS === 'true' ? '/MENU-QR/' : './',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
